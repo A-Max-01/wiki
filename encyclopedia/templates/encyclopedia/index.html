@@ -7,21 +7,23 @@
 {% block body %}
 
 {% if not entries %}
-<div>
-<h1>{{ title }}</h1>
+    {% if edit_bool %}
+     <div>
 <p>
-    {{ content }}
+    {{ content|safe }}
 </p>
-<a href="wiki/{{ title }}">
+<a href="{{ title }}/edit">
     <input type="submit" class="btn btn-outline-info" value="Edit">
 </a>
 </div>
+        {% endif %}
+
     {% else %}
     <h1>All Pages</h1>
     <ul>
         {% for entry in entries %}
             <li>
-                <a href="Entry/{{ entry }}">
+                <a href="wiki/{{ entry }}">
                     {{ entry }}
                 </a>
                 </li>

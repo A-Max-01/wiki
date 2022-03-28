@@ -19,13 +19,14 @@ def index(request):
 
 
 
-def entry(request, entry):
-    en = util.get_entry(entry)
+def entry(request, title):
+    en = util.get_entry(title)
     if en is not None:
-        con = convert(entry)
+        con = convert(title)
         return render(request, 'encyclopedia/index.html', {
-            'title': entry,
-            'content': con
+            'content': con,
+            'edit_bool': True,
+            'title': title
         })
     else:
         return http.HttpResponse("this entry is not exist")
@@ -49,7 +50,6 @@ def edit(request, title):
         get_entry = util.get_entry(title)
         if get_entry is not None:
             return render(request, 'encyclopedia/edit.html', {
-                'title': title,
                 'content': get_entry
             })
         else:
@@ -72,7 +72,6 @@ def search(request):
     if get_entry is not None:
         con = convert(query)
         return render(request, "encyclopedia/index.html", {
-            'title': query,
             'content': con
             })
     else:
