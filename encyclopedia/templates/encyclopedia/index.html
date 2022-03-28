@@ -1,0 +1,34 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Encyclopedia
+{% endblock %}
+
+{% block body %}
+
+{% if not entries %}
+<div>
+<h1>{{ title }}</h1>
+<p>
+    {{ content }}
+</p>
+<a href="wiki/{{ title }}">
+    <input type="submit" class="btn btn-outline-info" value="Edit">
+</a>
+</div>
+    {% else %}
+    <h1>All Pages</h1>
+    <ul>
+        {% for entry in entries %}
+            <li>
+                <a href="Entry/{{ entry }}">
+                    {{ entry }}
+                </a>
+                </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+{% endblock %}

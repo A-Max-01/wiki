@@ -1,0 +1,25 @@
+
+{% extends "encyclopedia/layout.html" %}
+{% load static %}
+{% block style %}
+<link href="{% static 'encyclopedia/create_new.css' %}" rel="stylesheet">
+{% endblock %}
+{% block title %}
+{{ title}}
+{% endblock %}
+
+  {% block body %}
+      <form {% url 'index' %} method="post">
+      {% csrf_token %}
+          <h1>Edit entry</h1>
+          <div class="flex_box">
+              <h1>{{ title }}</h1>
+              </div>
+          <div class="flex_box">
+              <label for="id_content">Content :</label>
+              <textarea name="content" cols="20" rows="5" required id="id_content">{{ content }}</textarea>
+          </div>
+
+      <input class="btn btn-outline-primary" type="submit" value="Edit">
+   </form>
+                {% endblock %}
